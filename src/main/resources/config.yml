@@ -1,0 +1,10 @@
+messages:
+  fly-enabled: '<gray>You can now fly!</gray>'
+  fly-disabled: '<gray>You can no longer fly!</gray>'
+  fly-enabled-other: '<gray>The player <white><name></white> can now fly!</gray>'
+  fly-disabled-other: '<gray>The player <white><name></white> can no longer fly!</gray>'
+  vanish-enabled: '<gray>You are now invisible!</gray>'
+  vanish-disabled: '<gray>You are no longer invisible!</gray>'
+  vanish-enabled-other: '<gray>The player <white><name></white> is now invisible!</gray>'
+  vanish-disabled-other: '<gray>The player <white><name></white> is no longer invisible!</gray>'
+  reload: '<gray>The plugin was reloaded!</gray>'

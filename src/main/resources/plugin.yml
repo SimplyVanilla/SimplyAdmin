@@ -1,0 +1,5 @@
+name: SimplyAdmin
+version: '${version}'
+main: de.rexlmanu.simplyadmin.SimplyAdminPlugin
+author: rexlManu <contact@emmanuel-lampe.de>
+api-version: 1.19
