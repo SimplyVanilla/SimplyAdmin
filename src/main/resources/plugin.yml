@@ -17,7 +17,7 @@ commands:
     usage: 'Usage: /<command> [PLAYER]'
     permission: simplyadmin.vanish
 
-  reload:
+  simplyadmin:
     description: Reload plugin config.
     usage: 'Usage: /<command>'
     permission: simplyadmin.reload
@@ -37,4 +37,7 @@ permissions:
     default: op
   simplyadmin.reload:
     description: whether the player can reload the plugin config
+    default: op
+  simplyadmin.vanish.see:
+    description: whether the player can see vanished players
     default: op
