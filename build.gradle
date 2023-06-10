@@ -51,6 +51,7 @@ build.dependsOn shadowJar
 
 shadowJar {
     archiveClassifier.set('')
+    relocate 'cloud.commandframework', 'de.rexlmanu.simplyadmin.dependency.commandframework'
 }
 
 processResources {
