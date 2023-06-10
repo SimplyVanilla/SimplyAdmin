@@ -1,5 +1,40 @@
+main: net.simplyvanilla.simplyadmin.SimplyAdminPlugin
 name: SimplyAdmin
 version: '${version}'
-main: de.rexlmanu.simplyadmin.SimplyAdminPlugin
-author: rexlManu <contact@emmanuel-lampe.de>
 api-version: 1.19
+
+author: Simply Vanilla
+website: https://github.com/SimplyVanilla/SimplyAdmin
+
+commands:
+  fly:
+    description: Activate fly mode for yourself or another player.
+    usage: 'Usage: /<command> [PLAYER]'
+    permission: simplyadmin.fly
+
+  vanish:
+    description: Vanish yourself or another player.
+    usage: 'Usage: /<command> [PLAYER]'
+    permission: simplyadmin.vanish
+
+  reload:
+    description: Reload plugin config.
+    usage: 'Usage: /<command>'
+    permission: simplyadmin.reload
+
+permissions:
+  simplyadmin.fly:
+    description: whether the player can activate fly mode for themself
+    default: op
+  simplyadmin.fly.other:
+    description: whether the player can activate fly mode for someone else
+    default: op
+  simplyadmin.vanish:
+    description: whether the player can vanish
+    default: op
+  simplyadmin.vanish.other:
+    description: whether the player can vanish someone else
+    default: op
+  simplyadmin.reload:
+    description: whether the player can reload the plugin config
+    default: op

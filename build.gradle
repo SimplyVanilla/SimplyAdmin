@@ -5,8 +5,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group = 'de.rexlmanu'
-version = '1.0-SNAPSHOT'
+group = 'net.simplyvanilla'
+version = '0.1.0'
 
 repositories {
     mavenCentral()
