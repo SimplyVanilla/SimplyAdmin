@@ -10,7 +10,7 @@ public abstract class PlayerToggleCommand {
 
     protected final SimplyAdminPlugin plugin;
 
-    private PlayerToggleCommand(SimplyAdminPlugin plugin) {
+    protected PlayerToggleCommand(SimplyAdminPlugin plugin) {
         this.plugin = plugin;
     }
 
