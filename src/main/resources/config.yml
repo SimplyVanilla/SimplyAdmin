@@ -8,3 +8,5 @@ messages:
   vanish-enabled-other: '<gray>The player <white><name></white> is now invisible!</gray>'
   vanish-disabled-other: '<gray>The player <white><name></white> is no longer invisible!</gray>'
   reload: '<gray>The plugin was reloaded!</gray>'
+  player-not-found: '<red>The player <dark_red><name></dark_red> was not found!</red>'
+  sender-has-to-be-a-player: '<red>The sender has to be a player!</red>'
