@@ -25,8 +25,8 @@ public abstract class PlayerToggleCommand {
                     Placeholder.unparsed("name", args[0])));
                 return;
             }
-        } else if (sender instanceof Player) {
-            target = (Player) sender;
+        } else if (sender instanceof Player player) {
+            target = player;
         }
 
         if (target == null) {
