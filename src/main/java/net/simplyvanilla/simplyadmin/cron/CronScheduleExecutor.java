@@ -14,7 +14,7 @@ public class CronScheduleExecutor {
 
     private final SimplyAdminPlugin plugin;
 
-    private final Map<CronEntry, String> lastExecutedCommand = new HashMap<>();
+    private final Map<CronEntry, Integer> currentCommandIndex = new HashMap<>();
     private final Set<Integer> taskIds = new HashSet<>();
 
     public CronScheduleExecutor(SimplyAdminPlugin plugin, ConfigurationSection section) {
@@ -39,16 +39,15 @@ public class CronScheduleExecutor {
     private void schedule(CronEntry entry) {
         int taskId =
             this.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(this.plugin, () -> {
-                String lastCommand = this.lastExecutedCommand.get(entry);
-                for (String command : entry.commands) {
-                    if (command.equals(lastCommand)) {
-                        continue;
-                    }
-                    this.plugin.getServer()
-                        .dispatchCommand(this.plugin.getServer().getConsoleSender(), command);
-                    this.lastExecutedCommand.put(entry, command);
-                    return;
+                int currentIndex = this.currentCommandIndex.getOrDefault(entry, 0);
+                if (currentIndex >= entry.commands.size()) {
+                    currentIndex = 0;
                 }
+
+                String command = entry.commands.get(currentIndex);
+                this.plugin.getServer()
+                    .dispatchCommand(this.plugin.getServer().getConsoleSender(), command);
+                this.currentCommandIndex.put(entry, currentIndex + 1);
             }, 0L, entry.interval * 20L);
 
         this.taskIds.add(taskId);
