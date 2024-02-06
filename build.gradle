@@ -40,12 +40,6 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
-tasks {
-    runServer {
-        minecraftVersion("1.19.4")
-    }
-}
-
 build.dependsOn shadowJar
 
 
