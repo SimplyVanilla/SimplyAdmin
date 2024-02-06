@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'net.simplyvanilla'
-version = '0.1.2'
+version = '0.2.0'
 
 repositories {
     mavenCentral()
@@ -37,12 +37,6 @@ java {
 tasks.withType(JavaCompile).configureEach {
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         options.release = targetJavaVersion
-    }
-}
-
-tasks {
-    runServer {
-        minecraftVersion("1.19.4")
     }
 }
 
