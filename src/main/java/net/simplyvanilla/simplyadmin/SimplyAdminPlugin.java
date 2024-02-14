@@ -40,11 +40,6 @@ public final class SimplyAdminPlugin extends JavaPlugin {
         manager.registerEvents(new NewPlayerListener(this), this);
     }
 
-    @Override
-    public void onDisable() {
-        this.cronScheduleExecutor.cancel();
-    }
-
     public Component getMessage(String key, TagResolver... tagResolvers) {
         String string = this.getConfig().getString("messages." + key);
         if (string == null) {

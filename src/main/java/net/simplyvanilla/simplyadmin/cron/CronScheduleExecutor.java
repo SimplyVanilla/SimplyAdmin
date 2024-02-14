@@ -1,10 +1,9 @@
 package net.simplyvanilla.simplyadmin.cron;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import net.simplyvanilla.simplyadmin.SimplyAdminPlugin;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -14,8 +13,7 @@ public class CronScheduleExecutor {
 
     private final SimplyAdminPlugin plugin;
 
-    private final Map<CronEntry, Integer> currentCommandIndex = new HashMap<>();
-    private final Set<Integer> taskIds = new HashSet<>();
+    private final Map<CronEntry, Integer> currentCommandIndex = new ConcurrentHashMap<>();
 
     public CronScheduleExecutor(SimplyAdminPlugin plugin, ConfigurationSection section) {
         this.plugin = plugin;
@@ -37,8 +35,8 @@ public class CronScheduleExecutor {
     }
 
     private void schedule(CronEntry entry) {
-        int taskId =
-            this.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(this.plugin, () -> {
+        this.plugin.getServer().getAsyncScheduler()
+            .runAtFixedRate(this.plugin, scheduledTask -> {
                 int currentIndex = this.currentCommandIndex.getOrDefault(entry, 0);
                 if (currentIndex >= entry.commands.size()) {
                     currentIndex = 0;
@@ -48,14 +46,6 @@ public class CronScheduleExecutor {
                 this.plugin.getServer()
                     .dispatchCommand(this.plugin.getServer().getConsoleSender(), command);
                 this.currentCommandIndex.put(entry, currentIndex + 1);
-            }, 0L, entry.interval * 20L);
-
-        this.taskIds.add(taskId);
-    }
-
-    public void cancel() {
-        for (int taskId : this.taskIds) {
-            this.plugin.getServer().getScheduler().cancelTask(taskId);
-        }
+            }, 0, entry.interval, TimeUnit.SECONDS);
     }
 }
