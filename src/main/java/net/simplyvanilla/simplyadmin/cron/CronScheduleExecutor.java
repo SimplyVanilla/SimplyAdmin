@@ -43,8 +43,17 @@ public class CronScheduleExecutor {
                 }
 
                 String command = entry.commands.get(currentIndex);
-                this.plugin.getServer()
-                    .dispatchCommand(this.plugin.getServer().getConsoleSender(), command);
+                if (SimplyAdminPlugin.isFolia()) {
+                    this.plugin.getServer().getGlobalRegionScheduler()
+                        .run(this.plugin, scheduledTask1 -> this.plugin.getServer()
+                            .dispatchCommand(this.plugin.getServer().getConsoleSender(),
+                                command));
+                } else {
+                    this.plugin.getServer().getScheduler()
+                        .runTask(this.plugin, () -> this.plugin.getServer()
+                            .dispatchCommand(this.plugin.getServer().getConsoleSender(), command));
+                }
+
                 this.currentCommandIndex.put(entry, currentIndex + 1);
             }, 0, entry.interval, TimeUnit.SECONDS);
     }

@@ -47,4 +47,14 @@ public final class SimplyAdminPlugin extends JavaPlugin {
         }
         return MiniMessage.miniMessage().deserialize(string, tagResolvers);
     }
+
+    public static boolean isFolia() {
+        try {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
 }
