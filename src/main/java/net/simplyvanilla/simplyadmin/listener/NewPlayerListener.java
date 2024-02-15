@@ -22,11 +22,22 @@ public class NewPlayerListener implements Listener {
             return;
         }
 
-        for (String command : this.commands) {
-            this.plugin.getServer().dispatchCommand(
-                this.plugin.getServer().getConsoleSender(),
-                command.replace("%player%", event.getPlayer().getName())
-            );
+        if (SimplyAdminPlugin.isFolia()) {
+            this.plugin.getServer().getGlobalRegionScheduler().run(this.plugin, scheduledTask -> {
+                for (String command : this.commands) {
+                    this.plugin.getServer().dispatchCommand(
+                        this.plugin.getServer().getConsoleSender(),
+                        command.replace("%player%", event.getPlayer().getName())
+                    );
+                }
+            });
+        } else {
+            for (String command : this.commands) {
+                this.plugin.getServer().dispatchCommand(
+                    this.plugin.getServer().getConsoleSender(),
+                    command.replace("%player%", event.getPlayer().getName())
+                );
+            }
         }
     }
 }
